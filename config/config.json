@@ -1,0 +1,24 @@
+{    
+    "MAGIC_WORDS" : "Who is ",
+    
+    "GOOG" : {
+        "GOOG_KEY" : '',
+        "GOOG_APP_NAME" : '',
+        "GOOGLE_APPLICATION_CREDENTIALS" : '',
+        "GOOG_SECRET_FILE" : ''
+    },
+    
+    "BOT_NAME" : '',
+    "BOT_TOKEN" : '',
+    "BOT_ID" : '',
+    "OWNER_UID" : '',
+    
+    "MEETUP_KEY" : '',
+        
+    "DBUSER" : '',
+    "DBPASS" : '',
+    "DBHOST" : '',
+    "DBNAME" : '',
+    
+    "SLACKPOLL_DELAY" : 1
+}
