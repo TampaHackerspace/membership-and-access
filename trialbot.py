@@ -7,8 +7,8 @@ from slackclient import SlackClient
 
 import ths.Member
 
-ConfigFile = 'config/config.json'
-ConfigLocal = 'config/local/config.json'
+ConfigFile = '/Users/tbirch/GitHub/membership-and-access/config/config.json'
+ConfigLocal = '/Users/tbirch/GitHub/membership-and-access/config/local/config.json'
 
 SlackTeam = dict()
 SlackChans = dict()
