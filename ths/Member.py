@@ -6,33 +6,27 @@ Created on Sep 18, 2016
 
 from fuzzywuzzy import fuzz
 
-from _GoogSheets import GoogSheets
+from goog.GoogSheets import GoogSheets
 
-class Member(GoogSheets):
+class Member(object):
     '''
     Extract THS member information from a big hairy pile of Google Sheets
     '''
     
-    Config = {
-        "GOOG_MEMBERS_SHEET" : '1tYz8RiHH5_VGNaec_4SvNUYD5-gyeMiPKtD4tjcKk5M',
-        "GOOG_MEMBERS_RANGE" : '2016!A2:Y110'
-    }
-    
     Members = {}
     LastNames = {}
+    gconfig={}
     
     
     #------------------------------------------------------------------------------ 
     def __init__(self, params):
         '''
         Constructor - get OAuth2 credentials & populate Members dict
-        '''
-        GoogSheets.__init__(self, params)
-        
-        cred = self.get_credentials()
-        self._load_goog_data(cred,
-                             Member.Config["GOOG_MEMBERS_SHEET"],
-                             Member.Config["GOOG_MEMBERS_RANGE"], )
+        '''        
+
+        self.gconfig.update(params);
+        self._load_goog_data(self.gconfig["GOOG_MEMBERS_SHEET"], params["GOOG_MEMBERS_RANGE"])
+    
         
         for (fullname, memberdata) in self.Members.iteritems():
             lname = memberdata["Last Name"]
@@ -61,14 +55,12 @@ class Member(GoogSheets):
 # Helpers below
 #===============================================================================
 
-
-
-    def _load_goog_data(self, cred, sheet_id, sheet_range):
+    def _load_goog_data(self, sheet_id, sheet_range):
         '''
         Load membership information from Google Sheet
-        '''
-    
-        member_data = self.get_goog_data(cred, sheet_id, sheet_range)
+        '''    
+        self.gs = GoogSheets(self.gconfig)
+        member_data = self.gs.get_goog_data(sheet_id, sheet_range)
         
         fields = member_data.pop(0)
         for row in member_data:
